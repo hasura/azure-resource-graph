@@ -8,7 +8,7 @@ storage encryption compliance across applications using the Azure Resource Graph
 
 from .client import AzureResourceGraphClient, AzureConfig
 
-__version__  = "1.0.2"
+__version__ = "1.0.2"
 __author__ = "Kenneth Stott"
 __email__ = "ken@hasura.io"
 
