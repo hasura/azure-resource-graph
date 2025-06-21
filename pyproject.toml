@@ -135,6 +135,11 @@ markers = [
     "unit: marks tests as unit tests",
 ]
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["azure_resource_graph*"]
+exclude = ["tests*", "docs*", "examples*"]
+
 # Coverage configuration
 [tool.coverage.run]
 source = ["azure_resource_graph"]
