@@ -87,9 +87,6 @@ Changelog = "https://github.com/yourusername/azure-resource-graph/blob/main/CHAN
 zip-safe = false
 include-package-data = true
 
-[tool.setuptools.packages.find]
-exclude = ["tests*", "docs*", "examples*"]
-
 # Black configuration
 [tool.black]
 line-length = 88
