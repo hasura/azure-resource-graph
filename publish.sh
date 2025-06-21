@@ -78,89 +78,27 @@ esac
 if [ ! -z "$BUMP_TYPE" ]; then
     if [ "$BUMP_TYPE" = "custom" ]; then
         print_step "🔢 Setting custom version to $CUSTOM_VERSION..."
-
-        # Check if .bumpversion.cfg exists
-        if [ ! -f ".bumpversion.cfg" ]; then
-            print_error "❌ .bumpversion.cfg not found. Creating one..."
-            cat > .bumpversion.cfg << EOF
-[bumpversion]
-current_version = $CURRENT_VERSION
-commit = True
-tag = True
-tag_name = v{new_version}
-message = Bump version: {current_version} → {new_version}
-
-[bumpversion:file:pyproject.toml]
-search = version = "{current_version}"
-replace = version = "{new_version}"
-
-[bumpversion:file:azure_resource_graph/__init__.py]
-search = __version__ = "{current_version}"
-replace = __version__ = "{new_version}"
-EOF
-        fi
-
-        # Update the current_version in .bumpversion.cfg to match what we're setting
-        sed -i.bak "s/current_version = .*/current_version = $CURRENT_VERSION/" .bumpversion.cfg
-
-        # Use bump2version with --new-version (no part needed)
-        bump2version --new-version $CUSTOM_VERSION patch --allow-dirty
+        bump2version --new-version $CUSTOM_VERSION patch
 
         NEW_VERSION=$CUSTOM_VERSION
     else
-    print_step "🔢 Bumping version ($BUMP_TYPE)..."
+        print_step "🔢 Bumping version ($BUMP_TYPE)..."
+        bump2version $BUMP_TYPE --verbose
 
-        # Check if .bumpversion.cfg exists for regular bumps too
-        if [ ! -f ".bumpversion.cfg" ]; then
-            print_error "❌ .bumpversion.cfg not found. Creating one..."
-            cat > .bumpversion.cfg << EOF
-[bumpversion]
-current_version = $CURRENT_VERSION
-commit = True
-tag = True
-tag_name = v{new_version}
-message = Bump version: {current_version} → {new_version}
-
-[bumpversion:file:pyproject.toml]
-search = version = "{current_version}"
-replace = version = "{new_version}"
-
-[bumpversion:file:azure_resource_graph/__init__.py]
-search = __version__ = "{current_version}"
-replace = __version__ = "{new_version}"
-EOF
-        fi
-
-    bump2version $BUMP_TYPE
-
-    # Get new version
+        # Get new version
         NEW_VERSION=$(grep -E '^version = ' pyproject.toml | sed 's/version = "//' | sed 's/"//')
     fi
 
     print_success "✅ Version bumped: $CURRENT_VERSION → $NEW_VERSION"
 
-    # Ask if user wants to commit and tag
+    # bump2version already committed and tagged (if configured to do so)
+    # Check if we should push
     echo ""
-    read -p "Do you want to commit and push the version bump? (y/N): " commit_choice
-    if [[ $commit_choice =~ ^[Yy]$ ]]; then
-        print_step "📝 Committing version bump..."
-        git add .
-        git commit -m "Bump version to $NEW_VERSION"
-
-        # Delete existing tag if it exists
-        if git tag -l | grep -q "v$NEW_VERSION"; then
-            print_warning "⚠️  Tag v$NEW_VERSION already exists. Deleting it..."
-            git tag -d "v$NEW_VERSION"
-        fi
-
-        git tag "v$NEW_VERSION"
-
-        read -p "Push to remote? (y/N): " push_choice
-        if [[ $push_choice =~ ^[Yy]$ ]]; then
-            git push
-            git push --tags --force  # Force push tags in case of overwrites
-            print_success "✅ Pushed to remote"
-        fi
+    read -p "Push to remote? (y/N): " push_choice
+    if [[ $push_choice =~ ^[Yy]$ ]]; then
+        git push
+        git push --tags
+        print_success "✅ Pushed to remote"
     fi
 fi
 
