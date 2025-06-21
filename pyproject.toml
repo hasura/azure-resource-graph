@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "azure-resource-graph"
-dynamic = ["version"]
+version = "1.0.0"
 description = "Python client for Azure Resource Graph API with storage encryption analysis"
 readme = "README.md"
 license = {text = "MIT"}
