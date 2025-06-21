@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "azure-resource-graph"
-version = "1.0.5"
+version = "1.0.4"
 description = "Python client for Azure Resource Graph API with storage encryption analysis"
 readme = "README.md"
 license = {text = "MIT"}
@@ -94,7 +94,7 @@ exclude = ["tests*", "docs*", "examples*"]
 [tool.black]
 line-length = 88
 target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
-include = '\.pyi?
+include = '\.pyi?'
 
 # MyPy configuration
 [tool.mypy]
