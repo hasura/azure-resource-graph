@@ -32,8 +32,8 @@ if ! command -v bump2version &> /dev/null; then
     exit 1
 fi
 
-# Get current version
-CURRENT_VERSION=$(python -c "import importlib.metadata; print(importlib.metadata.version('azure_resource_graph'))" 2>/dev/null || echo "unknown")
+# Get current version from pyproject.toml
+CURRENT_VERSION=$(grep -E '^version = ' pyproject.toml | sed 's/version = "//' | sed 's/"//' || echo "unknown")
 
 print_step "📦 Current version: $CURRENT_VERSION"
 echo ""
@@ -61,7 +61,8 @@ case $choice in
         ;;
     4)
         read -p "Enter new version (e.g., 1.2.3): " CUSTOM_VERSION
-        BUMP_TYPE="--new-version $CUSTOM_VERSION patch"
+        # For custom version, we need to handle it differently
+        BUMP_TYPE="custom"
         ;;
     5)
         print_warning "⏭️  Skipping version bump..."
@@ -75,11 +76,67 @@ esac
 
 # Bump version if requested
 if [ ! -z "$BUMP_TYPE" ]; then
+    if [ "$BUMP_TYPE" = "custom" ]; then
+        print_step "🔢 Setting custom version to $CUSTOM_VERSION..."
+
+        # Check if .bumpversion.cfg exists
+        if [ ! -f ".bumpversion.cfg" ]; then
+            print_error "❌ .bumpversion.cfg not found. Creating one..."
+            cat > .bumpversion.cfg << EOF
+[bumpversion]
+current_version = $CURRENT_VERSION
+commit = True
+tag = True
+tag_name = v{new_version}
+message = Bump version: {current_version} → {new_version}
+
+[bumpversion:file:pyproject.toml]
+search = version = "{current_version}"
+replace = version = "{new_version}"
+
+[bumpversion:file:azure_resource_graph/__init__.py]
+search = __version__ = "{current_version}"
+replace = __version__ = "{new_version}"
+EOF
+        fi
+
+        # Update the current_version in .bumpversion.cfg to match what we're setting
+        sed -i.bak "s/current_version = .*/current_version = $CURRENT_VERSION/" .bumpversion.cfg
+
+        # Use bump2version with --new-version (no part needed)
+        bump2version --new-version $CUSTOM_VERSION patch --allow-dirty
+
+        NEW_VERSION=$CUSTOM_VERSION
+    else
     print_step "🔢 Bumping version ($BUMP_TYPE)..."
+
+        # Check if .bumpversion.cfg exists for regular bumps too
+        if [ ! -f ".bumpversion.cfg" ]; then
+            print_error "❌ .bumpversion.cfg not found. Creating one..."
+            cat > .bumpversion.cfg << EOF
+[bumpversion]
+current_version = $CURRENT_VERSION
+commit = True
+tag = True
+tag_name = v{new_version}
+message = Bump version: {current_version} → {new_version}
+
+[bumpversion:file:pyproject.toml]
+search = version = "{current_version}"
+replace = version = "{new_version}"
+
+[bumpversion:file:azure_resource_graph/__init__.py]
+search = __version__ = "{current_version}"
+replace = __version__ = "{new_version}"
+EOF
+        fi
+
     bump2version $BUMP_TYPE
 
     # Get new version
-    NEW_VERSION=$(python -c "import importlib.metadata; print(importlib.metadata.version('azure_resource_graph'))" 2>/dev/null || echo "unknown")
+        NEW_VERSION=$(grep -E '^version = ' pyproject.toml | sed 's/version = "//' | sed 's/"//')
+    fi
+
     print_success "✅ Version bumped: $CURRENT_VERSION → $NEW_VERSION"
 
     # Ask if user wants to commit and tag
@@ -89,12 +146,19 @@ if [ ! -z "$BUMP_TYPE" ]; then
         print_step "📝 Committing version bump..."
         git add .
         git commit -m "Bump version to $NEW_VERSION"
+
+        # Delete existing tag if it exists
+        if git tag -l | grep -q "v$NEW_VERSION"; then
+            print_warning "⚠️  Tag v$NEW_VERSION already exists. Deleting it..."
+            git tag -d "v$NEW_VERSION"
+        fi
+
         git tag "v$NEW_VERSION"
 
         read -p "Push to remote? (y/N): " push_choice
         if [[ $push_choice =~ ^[Yy]$ ]]; then
             git push
-            git push --tags
+            git push --tags --force  # Force push tags in case of overwrites
             print_success "✅ Pushed to remote"
         fi
     fi
@@ -118,7 +182,7 @@ if [[ ! $testpypi_choice =~ ^[Nn]$ ]]; then
     twine upload --repository testpypi dist/*
 
     print_success "✅ Uploaded to TestPyPI!"
-    echo "🔗 Check: https://test.pypi.org/project/azure_resource_graph/"
+    echo "🔗 Check: https://test.pypi.org/project/azure-resource-graph/"
 else
     print_warning "⏭️  Skipped TestPyPI upload"
 fi
@@ -129,7 +193,7 @@ if [[ $pypi_choice =~ ^[Yy]$ ]]; then
     print_step "🚀 Uploading to PyPI..."
     twine upload dist/*
     print_success "✅ Uploaded to PyPI!"
-    echo "🔗 Check: https://pypi.org/project/azure_resource_graph/"
+    echo "🔗 Check: https://pypi.org/project/azure-resource-graph/"
 else
     print_warning "⏭️  Skipped PyPI upload"
     echo ""
