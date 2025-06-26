@@ -57,6 +57,7 @@ def get_requirements():
 CORE_REQUIREMENTS = [
     "requests>=2.28.0,<3.0.0",
     "python-dotenv>=0.19.0,<2.0.0",
+    "pydantic>=2.11.7"
 ]
 
 # Optional requirements for enhanced functionality
