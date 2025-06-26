@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 import threading
 
-from container_workload_analysis import ContainerWorkloadsAnalysisQueries
+from .container_workload_analysis import ContainerWorkloadsAnalysisQueries
 from .storage_analysis import StorageAnalysisQueries
 from .network_analysis import NetworkAnalysisQueries
 from .vm_governance import VMGovernanceQueries
