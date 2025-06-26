@@ -1,4 +1,5 @@
 from .client import AzureResourceGraphClient, AzureConfig
+
 # Import all Pydantic models
 from .models import (
     # Network Analysis Models
@@ -31,6 +32,8 @@ from .models import (
 from .network_analysis import NetworkAnalysisQueries
 from .storage_analysis import StorageAnalysisQueries
 from .vm_governance import VMGovernanceQueries
+from .container_workload_analysis import ContainerWorkloadsAnalysisQueries
+from .iam_analysis import IAMAnalysisQueries  # or whatever the class name is
 
 # Backward compatibility imports
 try:
@@ -60,6 +63,8 @@ __all__ = [
     'StorageAnalysisQueries',
     'NetworkAnalysisQueries',
     'VMGovernanceQueries',
+    'ContainerWorkloadsAnalysisQueries',
+    'IAMAnalysisQueries',
 
     # Network Analysis Models
     'NSGRule',
