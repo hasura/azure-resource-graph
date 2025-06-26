@@ -4,8 +4,6 @@ Container & Modern Workloads Analysis Module for Azure Resource Graph Client
 Provides comprehensive analysis for AKS clusters, Container Registries, and App Services
 """
 
-from typing import List, Dict, Any, Optional
-
 
 class ContainerWorkloadsAnalysisQueries:
     """Container & Modern Workloads analysis related queries for Azure Resource Graph"""

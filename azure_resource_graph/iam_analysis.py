@@ -4,8 +4,6 @@ Identity & Access Management Analysis Module for Azure Resource Graph Client
 Provides comprehensive IAM analysis including role assignments, Key Vault security, and managed identities
 """
 
-from typing import List, Dict, Any, Optional
-
 
 class IAMAnalysisQueries:
     """Identity & Access Management related queries for Azure Resource Graph"""

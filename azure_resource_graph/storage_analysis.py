@@ -4,8 +4,6 @@ Storage Analysis Module for Azure Resource Graph Client
 Provides comprehensive storage security, compliance, optimization, and governance analysis
 """
 
-from typing import List, Dict, Any, Optional
-
 
 class StorageAnalysisQueries:
     """Storage analysis related queries for Azure Resource Graph"""

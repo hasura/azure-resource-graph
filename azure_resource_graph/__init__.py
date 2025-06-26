@@ -1,9 +1,4 @@
 from .client import AzureResourceGraphClient, AzureConfig
-from .storage_analysis import StorageAnalysisQueries
-from .network_analysis import NetworkAnalysisQueries
-from .vm_governance import VMGovernanceQueries
-from .iam_analysis import IAMAnalysisQueries
-
 # Import all Pydantic models
 from .models import (
     # Network Analysis Models
@@ -29,16 +24,13 @@ from .models import (
     VMGovernanceSummary,
 
     # Identity & Access Management Models
-    RoleAssignmentResult,
-    KeyVaultSecurityResult,
-    ManagedIdentityResult,
-    CustomRoleResult,
-    IAMComplianceSummary,
-
     # Legacy/Compatibility Models
     ComplianceSummary,
     ComprehensiveSecuritySummary
 )
+from .network_analysis import NetworkAnalysisQueries
+from .storage_analysis import StorageAnalysisQueries
+from .vm_governance import VMGovernanceQueries
 
 # Backward compatibility imports
 try:

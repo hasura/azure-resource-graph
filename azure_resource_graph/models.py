@@ -5,7 +5,8 @@ Includes comprehensive storage and network analysis models
 All field names use snake_case convention
 """
 
-from typing import List, Optional, Literal
+from typing import Literal
+
 from pydantic import BaseModel, Field
 
 
