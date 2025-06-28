@@ -94,8 +94,8 @@ setup(
 
     # Author information
     author="Azure Resource Graph",
-    author_email="your.email@domain.com",  # Update with your email
-    url="https://github.com/yourusername/azure-resource-graph",  # Update with your repo
+    author_email="ken@promptql.io",  # Update with your email
+    url="https://github.com/hasura/azure-resource-graph",  # Update with your repo
 
     # License and classifiers
     license="MIT",
@@ -146,9 +146,9 @@ setup(
 
     # Project URLs
     project_urls={
-        "Documentation": "https://github.com/yourusername/azure-resource-graph/blob/main/README.md",
-        "Source": "https://github.com/yourusername/azure-resource-graph",
-        "Tracker": "https://github.com/yourusername/azure-resource-graph/issues",
+        "Documentation": "https://github.com/hasura/azure-resource-graph/blob/main/README.md",
+        "Source": "https://github.com/hasura/azure-resource-graph",
+        "Tracker": "https://github.com/hasura/azure-resource-graph/issues",
     },
 
     # Additional metadata

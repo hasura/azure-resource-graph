@@ -97,7 +97,7 @@ class ContainerWorkloadsAnalysisResult(BaseModel):
 # ============================================================================
 
 @connector.register_query
-async def storage_analysis(subscription_ids: Optional[List[str]] = None) -> List[StorageResource]:
+async def az_storage_analysis(subscription_ids: Optional[List[str]] = None) -> List[StorageResource]:
     """
     Comprehensive storage security analysis including encryption, compliance, and security findings.
 
@@ -110,7 +110,7 @@ async def storage_analysis(subscription_ids: Optional[List[str]] = None) -> List
     return client.query_storage_analysis(subscription_ids)
 
 @connector.register_query
-async def storage_encryption(subscription_ids: Optional[List[str]] = None) -> List[StorageResource]:
+async def az_storage_encryption(subscription_ids: Optional[List[str]] = None) -> List[StorageResource]:
     """
     Storage encryption analysis across all storage types.
 
@@ -123,7 +123,7 @@ async def storage_encryption(subscription_ids: Optional[List[str]] = None) -> Li
     return client.query_storage_encryption(subscription_ids)
 
 @connector.register_query
-async def storage_access_control(subscription_ids: Optional[List[str]] = None) -> List[StorageAccessControlResult]:
+async def az_storage_access_control(subscription_ids: Optional[List[str]] = None) -> List[StorageAccessControlResult]:
     """
     Storage access control and network security analysis.
 
@@ -136,7 +136,7 @@ async def storage_access_control(subscription_ids: Optional[List[str]] = None) -
     return client.query_storage_access_control(subscription_ids)
 
 @connector.register_query
-async def storage_backup_analysis(subscription_ids: Optional[List[str]] = None) -> List[StorageBackupResult]:
+async def az_storage_backup_analysis(subscription_ids: Optional[List[str]] = None) -> List[StorageBackupResult]:
     """
     Storage backup configuration and disaster recovery analysis.
 
@@ -149,7 +149,7 @@ async def storage_backup_analysis(subscription_ids: Optional[List[str]] = None) 
     return client.query_storage_backup_analysis(subscription_ids)
 
 @connector.register_query
-async def storage_optimization(subscription_ids: Optional[List[str]] = None) -> List[StorageOptimizationResult]:
+async def az_storage_optimization(subscription_ids: Optional[List[str]] = None) -> List[StorageOptimizationResult]:
     """
     Storage cost optimization and utilization analysis.
 
@@ -162,7 +162,7 @@ async def storage_optimization(subscription_ids: Optional[List[str]] = None) -> 
     return client.query_storage_optimization(subscription_ids)
 
 @connector.register_query
-async def storage_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[StorageComplianceSummary]:
+async def az_storage_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[StorageComplianceSummary]:
     """
     Storage compliance summary by application.
 
@@ -179,7 +179,7 @@ async def storage_compliance_summary(subscription_ids: Optional[List[str]] = Non
 # ============================================================================
 
 @connector.register_query
-async def vm_security(subscription_ids: Optional[List[str]] = None) -> List[VMSecurityResult]:
+async def az_vm_security(subscription_ids: Optional[List[str]] = None) -> List[VMSecurityResult]:
     """
     Virtual machine security analysis including encryption, extensions, and compliance.
 
@@ -192,7 +192,7 @@ async def vm_security(subscription_ids: Optional[List[str]] = None) -> List[VMSe
     return client.query_vm_security(subscription_ids)
 
 @connector.register_query
-async def vm_optimization(subscription_ids: Optional[List[str]] = None) -> List[VMOptimizationResult]:
+async def az_vm_optimization(subscription_ids: Optional[List[str]] = None) -> List[VMOptimizationResult]:
     """
     Virtual machine cost optimization and sizing analysis.
 
@@ -205,7 +205,7 @@ async def vm_optimization(subscription_ids: Optional[List[str]] = None) -> List[
     return client.query_vm_optimization(subscription_ids)
 
 @connector.register_query
-async def vm_extensions(subscription_ids: Optional[List[str]] = None) -> List[VMExtensionResult]:
+async def az_vm_extensions(subscription_ids: Optional[List[str]] = None) -> List[VMExtensionResult]:
     """
     Virtual machine extensions analysis for security and compliance impact.
 
@@ -218,7 +218,7 @@ async def vm_extensions(subscription_ids: Optional[List[str]] = None) -> List[VM
     return client.query_vm_extensions(subscription_ids)
 
 @connector.register_query
-async def vm_patch_compliance(subscription_ids: Optional[List[str]] = None) -> List[VMPatchComplianceResult]:
+async def az_vm_patch_compliance(subscription_ids: Optional[List[str]] = None) -> List[VMPatchComplianceResult]:
     """
     Virtual machine patch management and update compliance analysis.
 
@@ -231,7 +231,7 @@ async def vm_patch_compliance(subscription_ids: Optional[List[str]] = None) -> L
     return client.query_vm_patch_compliance(subscription_ids)
 
 @connector.register_query
-async def vm_governance_summary(subscription_ids: Optional[List[str]] = None) -> List[VMGovernanceSummary]:
+async def az_vm_governance_summary(subscription_ids: Optional[List[str]] = None) -> List[VMGovernanceSummary]:
     """
     VM governance summary by application including security and optimization metrics.
 
@@ -248,7 +248,7 @@ async def vm_governance_summary(subscription_ids: Optional[List[str]] = None) ->
 # ============================================================================
 
 @connector.register_query
-async def network_analysis(subscription_ids: Optional[List[str]] = None) -> List[NetworkResource]:
+async def az_network_analysis(subscription_ids: Optional[List[str]] = None) -> List[NetworkResource]:
     """
     Comprehensive network security analysis including NSGs, public IPs, and gateways.
 
@@ -261,7 +261,7 @@ async def network_analysis(subscription_ids: Optional[List[str]] = None) -> List
     return client.query_network_analysis(subscription_ids)
 
 @connector.register_query
-async def network_security(subscription_ids: Optional[List[str]] = None) -> List[NetworkResource]:
+async def az_network_security(subscription_ids: Optional[List[str]] = None) -> List[NetworkResource]:
     """
     Network security analysis (alias for network_analysis).
 
@@ -274,7 +274,7 @@ async def network_security(subscription_ids: Optional[List[str]] = None) -> List
     return client.query_network_security(subscription_ids)
 
 @connector.register_query
-async def nsg_detailed(subscription_ids: Optional[List[str]] = None) -> List[NSGRule]:
+async def az_nsg_detailed(subscription_ids: Optional[List[str]] = None) -> List[NSGRule]:
     """
     Detailed Network Security Group rules analysis with risk assessment.
 
@@ -287,7 +287,7 @@ async def nsg_detailed(subscription_ids: Optional[List[str]] = None) -> List[NSG
     return client.query_nsg_detailed(subscription_ids)
 
 @connector.register_query
-async def certificate_analysis(subscription_ids: Optional[List[str]] = None) -> List[CertificateAnalysisResult]:
+async def az_certificate_analysis(subscription_ids: Optional[List[str]] = None) -> List[CertificateAnalysisResult]:
     """
     SSL/TLS certificate analysis for Application Gateways and other services.
 
@@ -300,7 +300,7 @@ async def certificate_analysis(subscription_ids: Optional[List[str]] = None) -> 
     return client.query_certificate_analysis(subscription_ids)
 
 @connector.register_query
-async def network_topology(subscription_ids: Optional[List[str]] = None) -> List[NetworkTopologyResult]:
+async def az_network_topology(subscription_ids: Optional[List[str]] = None) -> List[NetworkTopologyResult]:
     """
     Network topology and configuration analysis.
 
@@ -313,7 +313,7 @@ async def network_topology(subscription_ids: Optional[List[str]] = None) -> List
     return client.query_network_topology(subscription_ids)
 
 @connector.register_query
-async def resource_optimization(subscription_ids: Optional[List[str]] = None) -> List[ResourceOptimizationResult]:
+async def az_resource_optimization(subscription_ids: Optional[List[str]] = None) -> List[ResourceOptimizationResult]:
     """
     Network resource optimization and cost analysis.
 
@@ -326,7 +326,7 @@ async def resource_optimization(subscription_ids: Optional[List[str]] = None) ->
     return client.query_resource_optimization(subscription_ids)
 
 @connector.register_query
-async def network_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[NetworkComplianceSummary]:
+async def az_network_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[NetworkComplianceSummary]:
     """
     Network compliance summary by application.
 
@@ -343,7 +343,7 @@ async def network_compliance_summary(subscription_ids: Optional[List[str]] = Non
 # ============================================================================
 
 @connector.register_query
-async def role_assignments(subscription_ids: Optional[List[str]] = None) -> List[RoleAssignmentResult]:
+async def az_role_assignments(subscription_ids: Optional[List[str]] = None) -> List[RoleAssignmentResult]:
     """
     Azure Role-Based Access Control (RBAC) assignments analysis.
 
@@ -356,7 +356,7 @@ async def role_assignments(subscription_ids: Optional[List[str]] = None) -> List
     return client.query_role_assignments(subscription_ids)
 
 @connector.register_query
-async def key_vault_security(subscription_ids: Optional[List[str]] = None) -> List[KeyVaultSecurityResult]:
+async def az_key_vault_security(subscription_ids: Optional[List[str]] = None) -> List[KeyVaultSecurityResult]:
     """
     Key Vault security configuration and access control analysis.
 
@@ -369,7 +369,7 @@ async def key_vault_security(subscription_ids: Optional[List[str]] = None) -> Li
     return client.query_key_vault_security(subscription_ids)
 
 @connector.register_query
-async def managed_identities(subscription_ids: Optional[List[str]] = None) -> List[ManagedIdentityResult]:
+async def az_managed_identities(subscription_ids: Optional[List[str]] = None) -> List[ManagedIdentityResult]:
     """
     Managed identities analysis including usage patterns and security risks.
 
@@ -382,7 +382,7 @@ async def managed_identities(subscription_ids: Optional[List[str]] = None) -> Li
     return client.query_managed_identities(subscription_ids)
 
 @connector.register_query
-async def custom_roles(subscription_ids: Optional[List[str]] = None) -> List[CustomRoleResult]:
+async def az_custom_roles(subscription_ids: Optional[List[str]] = None) -> List[CustomRoleResult]:
     """
     Custom Azure roles analysis and security assessment.
 
@@ -395,7 +395,7 @@ async def custom_roles(subscription_ids: Optional[List[str]] = None) -> List[Cus
     return client.query_custom_roles(subscription_ids)
 
 @connector.register_query
-async def iam_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[IAMComplianceSummary]:
+async def az_iam_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[IAMComplianceSummary]:
     """
     Identity and Access Management compliance summary by application.
 
@@ -412,7 +412,7 @@ async def iam_compliance_summary(subscription_ids: Optional[List[str]] = None) -
 # ============================================================================
 
 @connector.register_query
-async def aks_cluster_security(subscription_ids: Optional[List[str]] = None) -> List[AKSClusterSecurityResult]:
+async def az_aks_cluster_security(subscription_ids: Optional[List[str]] = None) -> List[AKSClusterSecurityResult]:
     """
     Azure Kubernetes Service (AKS) cluster security analysis including RBAC and network policies.
 
@@ -425,7 +425,7 @@ async def aks_cluster_security(subscription_ids: Optional[List[str]] = None) -> 
     return client.query_aks_cluster_security(subscription_ids)
 
 @connector.register_query
-async def aks_node_pools(subscription_ids: Optional[List[str]] = None) -> List[AKSNodePoolResult]:
+async def az_aks_node_pools(subscription_ids: Optional[List[str]] = None) -> List[AKSNodePoolResult]:
     """
     AKS node pool analysis including VM sizes, scaling, and optimization.
 
@@ -438,7 +438,7 @@ async def aks_node_pools(subscription_ids: Optional[List[str]] = None) -> List[A
     return client.query_aks_node_pools(subscription_ids)
 
 @connector.register_query
-async def container_registry_security(subscription_ids: Optional[List[str]] = None) -> List[ContainerRegistrySecurityResult]:
+async def az_container_registry_security(subscription_ids: Optional[List[str]] = None) -> List[ContainerRegistrySecurityResult]:
     """
     Azure Container Registry security analysis including access controls and scanning policies.
 
@@ -451,7 +451,7 @@ async def container_registry_security(subscription_ids: Optional[List[str]] = No
     return client.query_container_registry_security(subscription_ids)
 
 @connector.register_query
-async def app_service_security(subscription_ids: Optional[List[str]] = None) -> List[AppServiceSecurityResult]:
+async def az_app_service_security(subscription_ids: Optional[List[str]] = None) -> List[AppServiceSecurityResult]:
     """
     Azure App Service security analysis including TLS, authentication, and network security.
 
@@ -464,7 +464,7 @@ async def app_service_security(subscription_ids: Optional[List[str]] = None) -> 
     return client.query_app_service_security(subscription_ids)
 
 @connector.register_query
-async def app_service_deployment_slots(subscription_ids: Optional[List[str]] = None) -> List[AppServiceSlotResult]:
+async def az_app_service_deployment_slots(subscription_ids: Optional[List[str]] = None) -> List[AppServiceSlotResult]:
     """
     App Service deployment slots configuration and security analysis.
 
@@ -477,7 +477,7 @@ async def app_service_deployment_slots(subscription_ids: Optional[List[str]] = N
     return client.query_app_service_deployment_slots(subscription_ids)
 
 @connector.register_query
-async def container_workloads_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[ContainerWorkloadsComplianceSummary]:
+async def az_container_workloads_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[ContainerWorkloadsComplianceSummary]:
     """
     Container and modern workloads compliance summary by application.
 
@@ -490,7 +490,7 @@ async def container_workloads_compliance_summary(subscription_ids: Optional[List
     return client.get_container_workloads_compliance_summary(subscription_ids)
 
 @connector.register_query
-async def comprehensive_container_workloads_analysis(subscription_ids: Optional[List[str]] = None) -> List[ContainerWorkloadsAnalysisResult]:
+async def az_comprehensive_container_workloads_analysis(subscription_ids: Optional[List[str]] = None) -> List[ContainerWorkloadsAnalysisResult]:
     """
     Comprehensive container and modern workloads analysis including all aspects.
 
@@ -570,7 +570,7 @@ async def comprehensive_container_workloads_analysis(subscription_ids: Optional[
 # ============================================================================
 
 @connector.register_query
-async def compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[ComplianceSummary]:
+async def az_compliance_summary(subscription_ids: Optional[List[str]] = None) -> List[ComplianceSummary]:
     """
     Legacy compliance summary format for backward compatibility.
 
@@ -583,7 +583,7 @@ async def compliance_summary(subscription_ids: Optional[List[str]] = None) -> Li
     return client.get_compliance_summary(subscription_ids)
 
 @connector.register_query
-async def application_storage(application_name: str, subscription_ids: Optional[List[str]] = None) -> List[ApplicationStorageResource]:
+async def az_application_storage(application_name: str, subscription_ids: Optional[List[str]] = None) -> List[ApplicationStorageResource]:
     """
     Query storage resources for a specific application.
 
@@ -621,7 +621,7 @@ async def application_storage(application_name: str, subscription_ids: Optional[
 # ============================================================================
 
 @connector.register_query
-async def comprehensive_security_analysis(subscription_ids: Optional[List[str]] = None) -> List[ComprehensiveAnalysisResult]:
+async def az_comprehensive_security_analysis(subscription_ids: Optional[List[str]] = None) -> List[ComprehensiveAnalysisResult]:
     """
     Comprehensive security analysis across all Azure resource types.
 
@@ -746,7 +746,7 @@ async def comprehensive_security_analysis(subscription_ids: Optional[List[str]] 
             raise UnprocessableContent(f"Failed to perform comprehensive analysis: {str(e)}")
 
 @connector.register_query
-async def application_analysis(application_name: str, subscription_ids: Optional[List[str]] = None) -> List[ApplicationAnalysisResult]:
+async def az_application_analysis(application_name: str, subscription_ids: Optional[List[str]] = None) -> List[ApplicationAnalysisResult]:
     """
     Comprehensive analysis for a specific application across all resource types.
 

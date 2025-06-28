@@ -1,34 +1,20 @@
 from .client import AzureResourceGraphClient, AzureConfig
 
-# Import all Pydantic models
 from .models import (
-    # Network Analysis Models
-    NSGRule,
-    NetworkResource,
-    CertificateAnalysisResult,
-    NetworkTopologyResult,
-    ResourceOptimizationResult,
-    NetworkComplianceSummary,
-
-    # Storage Analysis Models
-    StorageResource,
-    StorageAccessControlResult,
-    StorageBackupResult,
-    StorageOptimizationResult,
-    StorageComplianceSummary,
-
-    # VM Governance Models
+# VM Governance Models
     VMSecurityResult,
     VMOptimizationResult,
     VMExtensionResult,
     VMPatchComplianceResult,
     VMGovernanceSummary,
-
-    # Identity & Access Management Models
-    # Legacy/Compatibility Models
-    ComplianceSummary,
-    ComprehensiveSecuritySummary
 )
+
+# Import all Pydantic models
+from models.comprehensive import ComplianceSummary, ComprehensiveSecuritySummary
+from models.storage_analysis import StorageResource, StorageAccessControlResult, StorageBackupResult, \
+    StorageOptimizationResult, StorageComplianceSummary
+from models.network_analysis import NSGRule, NetworkResource, CertificateAnalysisResult, NetworkTopologyResult, \
+    ResourceOptimizationResult, NetworkComplianceSummary
 from .network_analysis import NetworkAnalysisQueries
 from .storage_analysis import StorageAnalysisQueries
 from .vm_governance import VMGovernanceQueries
@@ -67,20 +53,7 @@ __all__ = [
     'IAMAnalysisQueries',
 
     # Network Analysis Models
-    'NSGRule',
-    'NetworkResource',
-    'CertificateAnalysisResult',
-    'NetworkTopologyResult',
-    'ResourceOptimizationResult',
-    'NetworkComplianceSummary',
-
     # Storage Analysis Models
-    'StorageResource',
-    'StorageAccessControlResult',
-    'StorageBackupResult',
-    'StorageOptimizationResult',
-    'StorageComplianceSummary',
-
     # VM Governance Models
     'VMSecurityResult',
     'VMOptimizationResult',
@@ -89,8 +62,6 @@ __all__ = [
     'VMGovernanceSummary',
 
     # Legacy/Compatibility Models
-    'ComplianceSummary',
-    'ComprehensiveSecuritySummary'
 ]
 
 __description__ = "Python client for Azure Resource Graph API with comprehensive storage, network, and VM governance analysis including security assessment, cost optimization, and compliance reporting"
