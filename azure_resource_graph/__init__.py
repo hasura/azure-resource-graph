@@ -35,7 +35,7 @@ except ImportError:
     # network_security.py doesn't exist, which is expected in the new structure
     pass
 
-__version__ = "1.0.16"
+__version__ = "1.0.17"
 __author__ = "Kenneth Stott"
 __email__ = "ken@hasura.io"
 
