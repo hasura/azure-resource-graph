@@ -1,0 +1,17 @@
+services:
+  app_arg:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile
+    environment:
+      HASURA_SERVICE_TOKEN_SECRET: $APP_ARG_HASURA_SERVICE_TOKEN_SECRET
+      OTEL_EXPORTER_OTLP_ENDPOINT: $APP_ARG_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $APP_ARG_OTEL_SERVICE_NAME
+      AZURE_TENANT_ID: ?
+      AZURE_CLIENT_ID: ?
+      AZURE_CLIENT_SECRET: ?
+      AZURE_SUBSCRIPTION_IDS: ?
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 5829:8080
