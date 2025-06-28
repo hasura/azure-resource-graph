@@ -14,7 +14,7 @@ from .vm_governance import VMGovernanceQueries
 from .container_workload_analysis import ContainerWorkloadsAnalysisQueries
 from .iam_analysis import IAMAnalysisQueries  # or whatever the class name is
 
-__version__ = "1.0.17"
+__version__ = "1.0.18"
 __author__ = "Kenneth Stott"
 __email__ = "ken@hasura.io"
 
