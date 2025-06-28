@@ -1,7 +1,6 @@
 from .client import AzureResourceGraphClient, AzureConfig
 
 from .models import (
-# VM Governance Models
     VMSecurityResult,
     VMOptimizationResult,
     VMExtensionResult,
@@ -9,31 +8,11 @@ from .models import (
     VMGovernanceSummary,
 )
 
-# Import all Pydantic models
-from models.comprehensive import ComplianceSummary, ComprehensiveSecuritySummary
-from models.storage_analysis import StorageResource, StorageAccessControlResult, StorageBackupResult, \
-    StorageOptimizationResult, StorageComplianceSummary
-from models.network_analysis import NSGRule, NetworkResource, CertificateAnalysisResult, NetworkTopologyResult, \
-    ResourceOptimizationResult, NetworkComplianceSummary
 from .network_analysis import NetworkAnalysisQueries
 from .storage_analysis import StorageAnalysisQueries
 from .vm_governance import VMGovernanceQueries
 from .container_workload_analysis import ContainerWorkloadsAnalysisQueries
 from .iam_analysis import IAMAnalysisQueries  # or whatever the class name is
-
-# Backward compatibility imports
-try:
-    from .network_security import NetworkSecurityQueries
-    import warnings
-
-    warnings.warn(
-        "Importing from network_security is deprecated. Use network_analysis instead.",
-        DeprecationWarning,
-        stacklevel=2
-    )
-except ImportError:
-    # network_security.py doesn't exist, which is expected in the new structure
-    pass
 
 __version__ = "1.0.17"
 __author__ = "Kenneth Stott"
